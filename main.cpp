@@ -1,30 +1,24 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
 int main() {
-    string fullName;
-    int birthYear;
+    string text;
+    cout << "Enter text: ";
+    getline(cin, text);
 
-    cout << "Enter full name: ";
-    getline(cin, fullName);
-    cout << "Enter birth year: ";
-    cin >> birthYear;
+    int countWithSpaces = text.length();
+    int countWithoutSpaces = 0;
 
-    // Loại bỏ khoảng trắng và chuyển thành chữ thường
-    string username = "";
-    for (char c : fullName) {
+    for (char c : text) {
         if (c != ' ') {
-            username += tolower(c);
+            countWithoutSpaces++;
         }
     }
 
-    // Ghép năm sinh vào cuối username
-    username += to_string(birthYear);
-
-    cout << "Username: " << username << endl;
+    cout << "Count all characters : " << countWithSpaces << endl;
+    cout << "Count without spaces : " << countWithoutSpaces << endl;
 
     return 0;
 }
