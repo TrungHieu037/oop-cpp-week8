@@ -1,30 +1,21 @@
 #include <iostream>
 #include <string>
-#include <cctype>
 
 using namespace std;
 
 int main() {
-    string fullName;
-    cout << "Enter full name: ";
-    getline(cin, fullName);
+    string text, word;
+    cout << "Enter sentence: ";
+    getline(cin, text);
+    cout << "Enter word to find: ";
+    cin >> word;
 
-    string initials = "";
-    
-    // Lấy chữ cái đầu tiên nếu chuỗi không rỗng
-    if (!fullName.empty()) {
-        initials += toupper(fullName[0]);
+    size_t pos = text.find(word);
+    if (pos != string::npos) {
+        cout << "The word \"" << word << "\" is found at position " << pos << "." << endl;
+    } else {
+        cout << "The word \"" << word << "\" was not found." << endl;
     }
-
-    // Duyệt qua chuỗi để tìm ký tự đầu tiên sau mỗi khoảng trắng
-    for (size_t i = 0; i < fullName.length(); i++) {
-        if (fullName[i] == ' ' && i + 1 < fullName.length() && fullName[i + 1] != ' ') {
-            initials += '.';
-            initials += toupper(fullName[i + 1]);
-        }
-    }
-
-    cout << "Initials: " << initials << endl;
 
     return 0;
 }
