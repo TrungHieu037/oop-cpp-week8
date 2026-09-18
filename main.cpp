@@ -1,31 +1,30 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
 int main() {
-    string text;
-    cout << "Nhập vào một câu bất kỳ: ";
-    getline(cin, text);
+    string fullName;
+    cout << "Enter full name: ";
+    getline(cin, fullName);
 
-    // 1. Độ dài của chuỗi
-    cout << "Độ dài chuỗi: " << text.length() << " ký tự." << endl;
-
-    // 2. Tìm vị trí từ "C++"
-    size_t pos = text.find("C++");
-    if (pos != string::npos) {
-        cout << "Tìm thấy 'C++' tại vị trí: " << pos << endl;
-
-        // 3. Trích xuất chuỗi từ vị trí tìm thấy đến hết
-        string part = text.substr(pos);
-        cout << "Chuỗi từ vị trí tìm thấy: " << part << endl;
-
-        // 4. Thay thế "C++" bằng "Programming"
-        text.replace(pos, 3, "Programming");
-        cout << "Chuỗi sau khi thay thế: " << text << endl;
-    } else {
-        cout << "Không tìm thấy từ 'C++' trong câu." << endl;
+    string initials = "";
+    
+    // Lấy chữ cái đầu tiên nếu chuỗi không rỗng
+    if (!fullName.empty()) {
+        initials += toupper(fullName[0]);
     }
+
+    // Duyệt qua chuỗi để tìm ký tự đầu tiên sau mỗi khoảng trắng
+    for (size_t i = 0; i < fullName.length(); i++) {
+        if (fullName[i] == ' ' && i + 1 < fullName.length() && fullName[i + 1] != ' ') {
+            initials += '.';
+            initials += toupper(fullName[i + 1]);
+        }
+    }
+
+    cout << "Initials: " << initials << endl;
 
     return 0;
 }
