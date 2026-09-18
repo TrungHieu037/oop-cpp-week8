@@ -4,21 +4,28 @@
 using namespace std;
 
 int main() {
-    // Khai báo chuỗi ban đầu theo ví dụ trên bảng
-    string s = "abcdefgh";
-    string s1 = "khj";
+    string text;
+    cout << "Nhập vào một câu bất kỳ: ";
+    getline(cin, text);
 
-    // 1. Cắt chuỗi con (substring) từ vị trí 0, độ dài 5 kí tự
-    string sub = s.substr(0, 5);
-    cout << "s.substr(0, 5) = \"" << sub << "\"" << endl;
+    // 1. Độ dài của chuỗi
+    cout << "Độ dài chuỗi: " << text.length() << " ký tự." << endl;
 
-    // 2. Tìm vị trí của ký tự 'd' trong chuỗi s
-    size_t pos = s.find("d"); 
-    cout << "s.find(\"d\") = " << pos << endl;
+    // 2. Tìm vị trí từ "C++"
+    size_t pos = text.find("C++");
+    if (pos != string::npos) {
+        cout << "Tìm thấy 'C++' tại vị trí: " << pos << endl;
 
-    // 3. Nối chuỗi s1 vào cuối chuỗi s
-    s.append(s1);
-    cout << "s.append(s1) -> " << s << endl;
+        // 3. Trích xuất chuỗi từ vị trí tìm thấy đến hết
+        string part = text.substr(pos);
+        cout << "Chuỗi từ vị trí tìm thấy: " << part << endl;
+
+        // 4. Thay thế "C++" bằng "Programming"
+        text.replace(pos, 3, "Programming");
+        cout << "Chuỗi sau khi thay thế: " << text << endl;
+    } else {
+        cout << "Không tìm thấy từ 'C++' trong câu." << endl;
+    }
 
     return 0;
 }
